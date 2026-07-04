@@ -49,7 +49,7 @@
   .date-row { display: inline-flex; align-items: baseline; justify-content: center; gap: clamp(12px,5vw,30px); font-family: var(--serif); font-weight: 600; font-size: clamp(40px,14vw,64px); line-height: 1; letter-spacing: -.01em; white-space: nowrap; }
   .save-date { margin-top: 16px; font-family: var(--sans); font-weight: 500; text-transform: uppercase; letter-spacing: .32em; font-size: clamp(11px,3.4vw,14px); }
   .hero__art { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 24px 0; }
-  .hero__art img { max-width: min(78%,360px); max-height: 42vh; max-height: 42svh; width: auto; height: auto; object-fit: contain; display: block; }
+  .hero__art img { width: min(74%,320px); height: auto; display: block; }
   .art-fallback { width: min(70%,300px); aspect-ratio: 4/5; border: 1px dashed var(--line); border-radius: 4px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; font-size: 12px; line-height: 1.7; color: var(--muted); }
   .hero__bottom { width: 100%; }
   .names { font-family: var(--serif); font-weight: 700; font-size: clamp(34px,11vw,56px); line-height: 1.05; letter-spacing: .01em; }
@@ -101,7 +101,7 @@
   /* Guidance card (parking / shuttle) */
   .note-card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; text-align: left; margin-top: 16px; }
   .note-card h3 { font-family: var(--sans); font-weight: 500; text-transform: uppercase; letter-spacing: .16em; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-  .note-card p { font-size: 14px; line-height: 1.85; color: var(--ink); }
+  .note-card p { font-size: 14px; line-height: 1.85; color: var(--muted); font-weight: 600; }
   .note-card .placeholder { color: var(--muted); }
 
   /* Gift */
@@ -213,19 +213,11 @@
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section class="section">
-    <p class="eyebrow">Gallery</p>
-    <div class="divider"></div>
-    <div class="gallery" id="gallery"></div>
-    <p class="gallery-empty" id="galleryEmpty">저장소 ./gallery/ 폴더에 1.jpg, 2.jpg 순서로 사진을 넣으면 이 자리에 표시됩니다.</p>
-  </section>
-
   <!-- Wedding day (EN + KR) -->
   <section class="section info">
-    <p class="eyebrow">The Wedding Day</p>
+    <p class="eyebrow">The Day</p>
     <div class="divider"></div>
-    <p class="date-kr">2026년 12월 20일 일요일 낮 12시</p>
+    <p class="date-kr">2026년 12월 20일 일요일 오후 12시</p>
     <div class="cal" id="cal"></div>
   </section>
 
@@ -243,20 +235,28 @@
 
     <div class="note-card">
       <h3>Parking</h3>
-      <p><b>마포SK허브블루오피스텔</b> 지하 주차장을 이용하실 수 있습니다.<br>서울 마포구 아현동 737<br>자세한 동선은 위 약도를 참고해 주세요.</p>
+      <p>마포SK허브블루오피스텔(서울 마포구 아현동 737) 지하 주차장을 이용하실 수 있습니다. 자세한 동선은 위 약도를 참고해 주세요.</p>
     </div>
 
     <div class="note-card">
       <h3>Shuttle Bus</h3>
-      <p>대전에서 오시는 하객분들을 위해 셔틀버스를 준비했습니다.<br>
-      <b>한국핵융합에너지연구원 정문</b>에서 <b>오전 9시</b> 출발 예정입니다. 탑승을 원하시면 아래 <b>참석 여부</b>에서 함께 알려주세요.</p>
+      <p>대전에서 오시는 하객분들을 위해 셔틀버스를 준비했습니다. 한국핵융합에너지연구원 정문에서 오전 9시 출발 예정입니다. 탑승을 원하시면 아래 참석 여부에서 함께 알려주세요.</p>
     </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section">
+    <p class="eyebrow">Gallery</p>
+    <div class="divider"></div>
+    <div class="gallery" id="gallery"></div>
+    <p class="gallery-empty" id="galleryEmpty">저장소 ./gallery/ 폴더에 1.jpg, 2.jpg 순서로 사진을 넣으면 이 자리에 표시됩니다.</p>
   </section>
 
   <!-- Gift -->
   <section class="section">
     <p class="eyebrow">With Your Heart</p>
     <div class="divider"></div>
+    <p class="notice">작고 단란한 예식으로 진행되어<br>화환은 정중히 사양합니다.<br>마음만으로도 충분히 감사하고<br>더없이 행복하겠습니다.</p>
     <p class="soft-line">먼 길 마다않고 전해주시는 그 마음,<br>오래도록 감사히 간직하겠습니다.</p>
     <div class="accounts">
       <details class="acc">
@@ -275,13 +275,6 @@
         </div>
       </details>
     </div>
-  </section>
-
-  <!-- Wreath notice -->
-  <section class="section">
-    <div class="divider"></div>
-    <p class="notice">작고 단란한 예식으로 진행되어<br>화환은 정중히 사양합니다.<br>마음만으로도 충분히 감사하고<br>더없이 행복하겠습니다.</p>
-    <div class="divider" style="margin-top:22px;"></div>
   </section>
 
   <!-- RSVP -->
