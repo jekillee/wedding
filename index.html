@@ -592,20 +592,36 @@ draw();
   var btn = document.getElementById('bgm-toggle');
   if (!audio || !btn) return;
   audio.volume = 0.55;
-  function setPlaying(p) { btn.classList.toggle('is-playing', p); btn.classList.toggle('is-paused', !p); }
-  function play() { var pr = audio.play(); if (pr && pr.then) { pr.then(function () { setPlaying(true); }).catch(function () { setPlaying(false); }); } }
+  function audible() { return !audio.paused && !audio.muted; }
+  function setUI() { btn.classList.toggle('is-playing', audible()); btn.classList.toggle('is-paused', !audible()); }
+  function tryPlay() { var pr = audio.play(); if (pr && pr.catch) pr.catch(function () {}); }
+
+  /* 1) 로드 즉시 '무음'으로 자동재생 시작 (브라우저가 허용하는 유일한 자동재생) */
+  audio.muted = true;
+  tryPlay();
+
+  /* 2) 첫 사용자 동작(초대장 열기 탭 등)에서 음소거 해제 → 소리가 즉시 켜짐 = 실질적 자동재생 */
+  var evs = ['pointerdown', 'touchend', 'click', 'keydown', 'scroll'];
+  var opts = { passive: true };
+  function unmute() {
+    audio.muted = false;
+    if (audio.paused) tryPlay();
+    setUI();
+    if (audible()) evs.forEach(function (ev) { document.removeEventListener(ev, unmute, opts); });
+  }
+  evs.forEach(function (ev) { document.addEventListener(ev, unmute, opts); });
+
+  /* 3) 우측 상단 버튼: 수동 켜기/끄기 */
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
-    if (audio.paused) play(); else { audio.pause(); setPlaying(false); }
+    if (audible()) audio.pause();
+    else { audio.muted = false; tryPlay(); }
+    setUI();
   });
-  /* 자동재생 시도 → 모바일에서 막히면 첫 화면 터치 시 재생 */
-  play();
-  var evs = ['click', 'touchstart', 'keydown', 'scroll'];
-  function firstGesture() {
-    if (audio.paused) play();
-    if (!audio.paused) evs.forEach(function (ev) { document.removeEventListener(ev, firstGesture); });
-  }
-  evs.forEach(function (ev) { document.addEventListener(ev, firstGesture, { passive: true }); });
+
+  audio.addEventListener('play', setUI);
+  audio.addEventListener('pause', setUI);
+  setUI();
 })();
 </script>
 </body>
