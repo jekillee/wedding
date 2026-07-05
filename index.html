@@ -230,9 +230,9 @@
   <section class="section info">
     <p class="eyebrow">The Day</p>
     <div class="divider"></div>
+    <div class="cal" id="cal"></div>
     <p class="date-kr">2026년 12월 20일 일요일 오후 12시</p>
     <p class="dday" id="dday"></p>
-    <div class="cal" id="cal"></div>
   </section>
 
   <!-- Location -->
@@ -259,7 +259,7 @@
 
     <div class="note-card">
       <h3>셔틀버스</h3>
-      <p>대전에서 오시는 하객분들을 위해 셔틀버스를 준비했습니다. <b>한국핵융합에너지연구원 정문에서 오전 9시 출발</b> 예정입니다. 탑승을 원하시면 아래 <b>참석 여부</b>에서 함께 알려주세요.</p>
+      <p>대전에서 오시는 하객분들을 위해 셔틀버스를 준비했습니다. 탑승을 원하시면 아래 <b>참석 여부</b>에서 함께 알려주세요.</p>
     </div>
   </section>
 
@@ -418,7 +418,7 @@ opener.addEventListener('click', openInvitation);
   var todayStr = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' });
   var today = new Date(todayStr + 'T00:00:00+09:00');
   var diff = Math.round((wed - today) / 86400000);
-  if (diff > 0) el.textContent = '예식까지 D-' + diff;
+  if (diff > 0) el.textContent = 'D-' + diff;
   else if (diff === 0) el.textContent = 'D-DAY';
 })();
 
